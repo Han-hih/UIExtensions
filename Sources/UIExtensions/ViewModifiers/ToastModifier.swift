@@ -3,11 +3,21 @@ import SwiftUI
 public struct ToastConfig {
     public var text: String
     public var duration: Double = 2.0
+    
+    public init(text: String, duration: Double = 2.0) {
+        self.text = text
+        self.duration = duration
+    }
 }
 
 public struct ToastModifier: ViewModifier {
     @Binding var isPresented: Bool
     let config: ToastConfig
+    
+    public init(isPresented: Binding<Bool>, config: ToastConfig) {
+        self._isPresented = isPresented
+        self.config = config
+    }
     
     public func body(content: Content) -> some View {
         ZStack {
